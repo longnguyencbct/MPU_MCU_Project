@@ -1,0 +1,17 @@
+led_display.c:400:6:OnRed1	8	static
+led_display.c:404:6:OnYellow1	8	static
+led_display.c:408:6:OnGreen1	8	static
+led_display.c:413:6:OffAllLED1	8	static
+led_display.c:418:6:OnRed2	8	static
+led_display.c:422:6:OnYellow2	8	static
+led_display.c:426:6:OnGreen2	8	static
+led_display.c:431:6:OffAllLED2	8	static
+led_display.c:437:6:OffAllLED	8	static
+led_display.c:442:6:OnPed_Red	8	static
+led_display.c:446:6:OnPed_Green	8	static
+led_display.c:450:6:OffPed	8	static
+led_display.c:454:6:OnPed_Mixed	8	static
+led_display.c:460:6:OnBuzzer	8	static
+led_display.c:464:6:OffBuzzer	8	static
+led_display.c:486:6:updateM1LEDS	8	static
+led_display.c:515:6:TimerInterupt	8	static

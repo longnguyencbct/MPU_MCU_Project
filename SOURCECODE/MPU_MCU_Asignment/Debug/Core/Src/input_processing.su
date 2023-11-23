@@ -1,0 +1,9 @@
+input_processing.c:25:6:fsm_for_automatic_leds	8	static
+input_processing.c:77:6:fsm_for_input_processing	8	static
+input_processing.c:179:6:sevenLEDvalueToDisplay	16	static
+input_processing.c:196:6:resetBuffer_lightSeconds	16	static
+input_processing.c:201:6:saveBuffer_lightSeconds	16	static
+input_processing.c:207:6:update_counterTraffic_to_Buffer	4	static
+input_processing.c:213:6:update_lightSeconds_to_counterTraffic	4	static
+input_processing.c:217:6:init_for_automatic_leds	8	static
+input_processing.c:223:6:M1_transition_function	8	static

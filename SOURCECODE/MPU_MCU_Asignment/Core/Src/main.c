@@ -22,8 +22,10 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "timer.h"
-#include "input_reading.h"
+//#include "input_processing.h"
+#include "led_display.h"
+#include "software_timer.h"
+//#include "input_reading.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -96,12 +98,29 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-  setTimer0(1000);
+  const int sevenSegTimer=25;
+  setTimer(0,sevenSegTimer);
+  setTimer(1,30);
+  setTimer(2,25);
+  setTimer(3,100);
+  setTimer(4,30);
+  int p_flag=0;
+  init_for_automatic_leds();
   while (1)
   {
-	  if(timer0_flag==1){
-		  HAL_GPIO_TogglePin(D6_PedLED_GPIO_Port, D6_PedLED_Pin);
-		  setTimer0(1000);
+	  //fsm_for_input_processing();
+	  button_reading(3);
+	  if(timer_flag[4]==1){
+		  setTimer(4,30);
+		  if(is_button_pressed(3)||is_button_pressed_1s(3)){
+			  if(p_flag==0){
+				  OnPed_Red();
+				  p_flag=1;
+			  }else{
+				  OffPed();
+				  p_flag=0;
+			  }
+		  }
 	  }
     /* USER CODE END WHILE */
 
@@ -206,7 +225,7 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, D12_PedBuzzer_Pin|D7_PedLED_Pin|D2_LED1_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, D13_PedBuzzer_Pin|D12_PedBuzzer_Pin|D7_PedLED_Pin|D2_LED1_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, D6_PedLED_Pin|D3_LED1_Pin|D5_LED2_Pin|D4_LED2_Pin, GPIO_PIN_RESET);
@@ -217,8 +236,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : D12_PedBuzzer_Pin D7_PedLED_Pin D2_LED1_Pin */
-  GPIO_InitStruct.Pin = D12_PedBuzzer_Pin|D7_PedLED_Pin|D2_LED1_Pin;
+  /*Configure GPIO pins : D13_PedBuzzer_Pin D12_PedBuzzer_Pin D7_PedLED_Pin D2_LED1_Pin */
+  GPIO_InitStruct.Pin = D13_PedBuzzer_Pin|D12_PedBuzzer_Pin|D7_PedLED_Pin|D2_LED1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -241,8 +260,8 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
-	timer_run();
-	button_reading();
+	timerRun();
+	//button_reading();
 }
 /* USER CODE END 4 */
 
