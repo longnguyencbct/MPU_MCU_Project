@@ -519,20 +519,20 @@ void TimerInterupt(){
 		if(index_led>1){
 			index_led=0;
 		}
-		update7SEG0(index_led);
-		update7SEG1(index_led);
+//		update7SEG0(index_led);
+//		update7SEG1(index_led);
 	}
 	if(timer_flag[2]==1){
 		setTimer(2,LEDblinkingTimer);
 		switch(currMode){
 			case MODE2:
-				ToggleAllRed();
+//				ToggleAllRed();
 				break;
 			case MODE3:
-				ToggleAllYellow();
+//				ToggleAllYellow();
 				break;
 			case MODE4:
-				ToggleAllGreen();
+//				ToggleAllGreen();
 				break;
 			default:
 				break;

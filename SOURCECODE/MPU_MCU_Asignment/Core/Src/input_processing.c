@@ -89,10 +89,10 @@ void fsm_for_input_processing(void){
 				OffAllLED();
 				//ToggleAllRed();
 				resetBuffer_lightSeconds();
-			}*/
+			}
+			*/
 			 fsm_for_automatic_leds();//////////////fsm for automatic leds
 			break;
-			/*
 		case MODE2:
 			if(is_button_pressed(0)||is_button_pressed_1s(0)){
 				currMode = MODE3;
@@ -167,7 +167,7 @@ void fsm_for_input_processing(void){
 			sevenLEDvalueToDisplay(0,4);
 			sevenLEDvalueToDisplay(1,lightSeconds_temp[2]);
 			break;
-			*/
+
 		}
 	}
 

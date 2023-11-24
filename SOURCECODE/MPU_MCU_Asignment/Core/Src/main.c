@@ -22,10 +22,10 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-//#include "input_processing.h"
+#include "input_processing.h"
 #include "led_display.h"
 #include "software_timer.h"
-//#include "input_reading.h"
+#include "input_reading.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -108,20 +108,20 @@ int main(void)
   init_for_automatic_leds();
   while (1)
   {
-	  //fsm_for_input_processing();
-	  button_reading(3);
-	  if(timer_flag[4]==1){
-		  setTimer(4,30);
-		  if(is_button_pressed(3)||is_button_pressed_1s(3)){
-			  if(p_flag==0){
-				  OnPed_Red();
-				  p_flag=1;
-			  }else{
-				  OffPed();
-				  p_flag=0;
-			  }
-		  }
-	  }
+	  fsm_for_input_processing();
+//	  button_reading(3);
+//	  if(timer_flag[4]==1){
+//		  setTimer(4,30);
+//		  if(is_button_pressed(3)||is_button_pressed_1s(3)){
+//			  if(p_flag==0){
+//				  OnPed_Red();
+//				  p_flag=1;
+//			  }else{
+//				  OffPed();
+//				  p_flag=0;
+//			  }
+//		  }
+//	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
