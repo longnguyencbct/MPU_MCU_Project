@@ -104,7 +104,7 @@ int main(void)
   setTimer(2,25);
   setTimer(3,100);
   setTimer(4,30);
-  int p_flag=0;
+//  int p_flag=0;
   init_for_automatic_leds();
   while (1)
   {
@@ -261,7 +261,7 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	timerRun();
-	//button_reading();
+	button_reading();
 }
 /* USER CODE END 4 */
 

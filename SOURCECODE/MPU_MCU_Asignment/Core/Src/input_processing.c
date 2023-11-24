@@ -5,23 +5,25 @@
  *      Author: clong
  */
 
-//#include "input_reading.h"
+#include "input_reading.h"
 #include "led_display.h"
 #include "software_timer.h"
+
+void M1_transition_function();
 
 int sevenLEDdisplayBuffer[]={0,1,0,0};
 enum MODE{MODE1, MODE2, MODE3, MODE4} ;
 enum MODE currMode = MODE1;
 
 enum AUTO1{A_RED1,A_YELLOW1,A_GREEN1};
-enum AUTO1 currM1State1=A_RED1;
+enum AUTO1 currM1State1= A_RED1;
 
 enum AUTO2{A_RED2,A_YELLOW2,A_GREEN2};
-enum AUTO2 currM1State2=A_GREEN2;
-int counterTraffic[]={5,3};
+enum AUTO2 currM1State2 = A_GREEN2;
+int counterTraffic[]={5, 3};
 
-int lightSeconds[]={5,2,3};
-int lightSeconds_temp[]={5,2,3};//red yellow green
+int lightSeconds[] = {5, 2, 3};
+int lightSeconds_temp[] = {5, 2, 3};//red yellow green
 void fsm_for_automatic_leds() {
     if (timer_flag[3] == 1) {
         setTimer(3, 100);
@@ -71,82 +73,76 @@ void fsm_for_automatic_leds() {
         }
     }
     //updateM1LEDS();
-    update_counterTraffic_to_Buffer();
+//    update_counterTraffic_to_Buffer();
 }
 
 void fsm_for_input_processing(void){
-	//button_reading(0);
-	//button_reading(1);
-	//button_reading(2);
 	if(timer_flag[1]==1){
 		setTimer(1,30);
 		switch(currMode){
 		case MODE1:
-			/*if(is_button_pressed(0)||is_button_pressed_1s(0)){
+			if(is_button_pressed(0)||is_button_pressed_1s(0)){
 				currMode = MODE2;
-				sevenLEDvalueToDisplay(0,2);
-				sevenLEDvalueToDisplay(1,lightSeconds[0]);
 				OffAllLED();
-				//ToggleAllRed();
-				resetBuffer_lightSeconds();
+				ToggleAllRed();
+//				resetBuffer_lightSeconds();
 			}
-			*/
 			 fsm_for_automatic_leds();//////////////fsm for automatic leds
 			break;
 		case MODE2:
 			if(is_button_pressed(0)||is_button_pressed_1s(0)){
 				currMode = MODE3;
-				sevenLEDvalueToDisplay(0,3);
-				sevenLEDvalueToDisplay(1,lightSeconds[1]);
+//				sevenLEDvalueToDisplay(0,3);
+//				sevenLEDvalueToDisplay(1,lightSeconds[1]);
 				OffAllLED();
-				//ToggleAllYellow();
-				resetBuffer_lightSeconds();
+				ToggleAllYellow();
+//				resetBuffer_lightSeconds();
 			}
 			if(is_button_pressed(1)||is_button_pressed_1s(1)){
 				lightSeconds_temp[0]+=1;
 				if(lightSeconds_temp[0]>99){
 					lightSeconds_temp[0]=1;
 				}
-				sevenLEDvalueToDisplay(1,lightSeconds_temp[0]);
+//				sevenLEDvalueToDisplay(1,lightSeconds_temp[0]);
 			}
 			if(is_button_pressed(2)||is_button_pressed_1s(2)){
 				currMode = MODE1;
-				saveBuffer_lightSeconds();
+//				saveBuffer_lightSeconds();
 
-				M1_transition_function();
+//				M1_transition_function();
 			}
-			sevenLEDvalueToDisplay(0,2);
-			sevenLEDvalueToDisplay(1,lightSeconds_temp[0]);
+//			sevenLEDvalueToDisplay(0,2);
+//			sevenLEDvalueToDisplay(1,lightSeconds_temp[0]);
 			break;
 		case MODE3:
 			if(is_button_pressed(0)||is_button_pressed_1s(0)){
 				currMode = MODE4;
-				sevenLEDvalueToDisplay(0,4);
-				sevenLEDvalueToDisplay(1,lightSeconds[2]);
+//				sevenLEDvalueToDisplay(0,4);
+//				sevenLEDvalueToDisplay(1,lightSeconds[2]);
 				OffAllLED();
 				//ToggleAllGreen();
-				resetBuffer_lightSeconds();
+//				resetBuffer_lightSeconds();
 			}
 			if(is_button_pressed(1)||is_button_pressed_1s(1)){
 				lightSeconds_temp[1]+=1;
 				if(lightSeconds_temp[1]>99){
 					lightSeconds_temp[1]=1;
 				}
-				sevenLEDvalueToDisplay(1,lightSeconds_temp[1]);
+//				sevenLEDvalueToDisplay(1,lightSeconds_temp[1]);
 			}
 			if(is_button_pressed(2)||is_button_pressed_1s(2)){
 				currMode = MODE1;
-				saveBuffer_lightSeconds();
+//				saveBuffer_lightSeconds();
 
 				M1_transition_function();
 			}
-			sevenLEDvalueToDisplay(0,3);
-			sevenLEDvalueToDisplay(1,lightSeconds_temp[1]);
+//			sevenLEDvalueToDisplay(0,3);
+//			sevenLEDvalueToDisplay(1,lightSeconds_temp[1]);
 			break;
 		case MODE4:
 			if(is_button_pressed(0)||is_button_pressed_1s(0)){
 				currMode = MODE1;
-				resetBuffer_lightSeconds();
+//				resetBuffer_lightSeconds();
 
 				M1_transition_function();
 			}
@@ -155,17 +151,17 @@ void fsm_for_input_processing(void){
 				if(lightSeconds_temp[2]>99){
 					lightSeconds_temp[2]=1;
 				}
-				sevenLEDvalueToDisplay(1,lightSeconds_temp[2]);
+//				sevenLEDvalueToDisplay(1,lightSeconds_temp[2]);
 			}
 			if(is_button_pressed(2)||is_button_pressed_1s(2)){
 				currMode = MODE1;
-				saveBuffer_lightSeconds();
+//				saveBuffer_lightSeconds();
 
 				M1_transition_function();
 			}
 
-			sevenLEDvalueToDisplay(0,4);
-			sevenLEDvalueToDisplay(1,lightSeconds_temp[2]);
+//			sevenLEDvalueToDisplay(0,4);
+//			sevenLEDvalueToDisplay(1,lightSeconds_temp[2]);
 			break;
 
 		}
@@ -175,7 +171,7 @@ void fsm_for_input_processing(void){
 
 }
 
-
+/*
 void sevenLEDvalueToDisplay(int index,int value){
 	if(value>99){
 		return;
@@ -193,6 +189,7 @@ void sevenLEDvalueToDisplay(int index,int value){
 		break;
 	}
 }
+
 void resetBuffer_lightSeconds(){
 	for(int i=0;i<3;i++){
 		lightSeconds_temp[i]=lightSeconds[i];
@@ -210,10 +207,12 @@ void update_counterTraffic_to_Buffer(){
 	sevenLEDdisplayBuffer[2]=counterTraffic[1]/10;
 	sevenLEDdisplayBuffer[3]=counterTraffic[1]%10;
 }
+
 void update_lightSeconds_to_counterTraffic(){
 	counterTraffic[0]=lightSeconds[0];
 	counterTraffic[1]=lightSeconds[2];
 }
+*/
 void init_for_automatic_leds(){
 	OffAllLED();
 	OnRed1();
@@ -221,10 +220,10 @@ void init_for_automatic_leds(){
 }
 
 void M1_transition_function(){
-	update_lightSeconds_to_counterTraffic();
+//	update_lightSeconds_to_counterTraffic();
 	currM1State1=A_RED1;
 	currM1State2=A_GREEN2;
-	sevenLEDvalueToDisplay(0,counterTraffic[0]);
-	sevenLEDvalueToDisplay(1,counterTraffic[2]);
+//	sevenLEDvalueToDisplay(0,counterTraffic[0]);
+//	sevenLEDvalueToDisplay(1,counterTraffic[2]);
 	init_for_automatic_leds();
 }
