@@ -13,5 +13,8 @@ led_display.c:450:6:OffPed	8	static
 led_display.c:454:6:OnPed_Mixed	8	static
 led_display.c:460:6:OnBuzzer	8	static
 led_display.c:464:6:OffBuzzer	8	static
-led_display.c:486:6:updateM1LEDS	8	static
-led_display.c:515:6:TimerInterupt	8	static
+led_display.c:470:6:ToggleAllRed	8	static
+led_display.c:485:6:ToggleAllYellow	8	static
+led_display.c:500:6:ToggleAllGreen	8	static
+led_display.c:515:6:updateM1LEDS	8	static
+led_display.c:544:6:TimerInterupt	8	static

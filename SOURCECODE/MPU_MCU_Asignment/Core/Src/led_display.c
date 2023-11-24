@@ -466,22 +466,51 @@ void OffBuzzer(){
 	  HAL_GPIO_WritePin (D13_PedBuzzer_GPIO_Port, D13_PedBuzzer_Pin, 0);
 }
 /*//////////*//////////////////////////////////////
-/*
+int flag = 0;
 void ToggleAllRed(){
-	HAL_GPIO_TogglePin(LED_RED1_GPIO_Port, LED_RED1_Pin);
-	HAL_GPIO_TogglePin(LED_RED2_GPIO_Port, LED_RED2_Pin);
+//	HAL_GPIO_TogglePin(LED_RED1_GPIO_Port, LED_RED1_Pin);
+//	HAL_GPIO_TogglePin(LED_RED2_GPIO_Port, LED_RED2_Pin);
+	if (flag == 0){
+		OffAllLED();
+		flag = 1;
+	}
+	else{
+		OnRed2();
+		OnRed1();
+		flag = 0;
+	}
 }
+
 
 void ToggleAllYellow(){
-	HAL_GPIO_TogglePin(LED_YELLOW1_GPIO_Port, LED_YELLOW1_Pin);
-	HAL_GPIO_TogglePin(LED_YELLOW2_GPIO_Port, LED_YELLOW2_Pin);
+//	HAL_GPIO_TogglePin(LED_YELLOW1_GPIO_Port, LED_YELLOW1_Pin);
+//	HAL_GPIO_TogglePin(LED_YELLOW2_GPIO_Port, LED_YELLOW2_Pin);
+	if (flag == 0){
+		OffAllLED();
+		flag = 1;
+	}
+	else{
+		OnYellow2();
+		OnYellow1();
+		flag = 0;
+	}
 }
 
+
 void ToggleAllGreen(){
-	HAL_GPIO_TogglePin(LED_GREEN1_GPIO_Port, LED_GREEN1_Pin);
-	HAL_GPIO_TogglePin(LED_GREEN2_GPIO_Port, LED_GREEN2_Pin);
+//	HAL_GPIO_TogglePin(LED_GREEN1_GPIO_Port, LED_GREEN1_Pin);
+//	HAL_GPIO_TogglePin(LED_GREEN2_GPIO_Port, LED_GREEN2_Pin);
+	if (flag == 0){
+		OffAllLED();
+		flag = 1;
+	}
+	else{
+		OnGreen2();
+		OnGreen1();
+		flag = 0;
+	}
 }
-/*////////////////////////////////////////////////
+////////////////////////////////////////////////
 
 void updateM1LEDS(){
 	OffAllLED();
